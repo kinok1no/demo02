@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<!-- この宣言は、このファイルがHTML5文書であることをブラウザに伝えます -->
+<html lang="ja">
+<!-- lang="ja"は、このページの主要な言語が日本語であることを示します -->
+
+<head>
+    <!-- <head>セクションには、ページに関する情報（メタデータ）や設定を記述します -->
+    <meta charset="UTF-8">
+    <!-- 文字エンコーディングをUTF-8に設定します。これにより、日本語などの多言語が正しく表示されます -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- スマートフォンなど、さまざまなデバイスでページが正しく表示されるようにするための設定です -->
+    <title>YouTube動画付きの動的なページ</title>
+    <!-- ブラウザのタブに表示されるページのタイトルです -->
+
+    <!-- スタイリングのためにTailwind CSSを読み込みます -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google FontsからInterフォントを読み込みます -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* フォントをページ全体に適用します */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* JavaScriptで追加するメッセージ用のスタイル */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <!-- <body>セクションには、実際にブラウザに表示されるコンテンツを記述します -->
+
+    <div class="container mx-auto mt-10 p-8 bg-white max-w-2xl rounded-lg shadow-md">
+        <!-- ページのコンテンツをまとめるコンテナです -->
+
+        <h1 id="main-heading" class="text-3xl font-bold text-gray-800 mb-4">
+            ようこそ！
+        </h1>
+
+        <p class="text-gray-600 mb-6">
+            これはJavaScriptとYouTube動画の埋め込みを組み合わせた、動的でリッチなページのサンプルです。
+        </p>
+
+        <!-- ===== ここからがYouTube動画のセクションです ===== -->
+        <h2 class="text-2xl font-bold text-gray-800 mb-3">
+            埋め込み動画 (YouTube)
+        </h2>
+        <p class="text-gray-600 mb-4">
+            下の動画はHTMLの<code class="bg-gray-200 p-1 rounded">&lt;iframe&gt;</code>タグを使って埋め込まれています。
+        </p>
+        
+        <!-- レスポンシブな16:9のアスペクト比を保つためのコンテナ -->
+        <div class="relative rounded-lg overflow-hidden shadow-md mb-6" style="padding-top: 56.25%;"> <!-- 16:9 Aspect Ratio -->
+            <!-- YouTubeの埋め込み用iframe -->
+            <iframe class="absolute top-0 left-0 w-full h-full" 
+                    src="https://www.youtube.com/embed/etXLyJ3kOCU" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+            </iframe>
+        </div>
+        <!-- ===== 動画のセクションはここまでです ===== -->
+
+
+        <h2 class="text-2xl font-bold text-gray-800 mb-3">
+            インタラクション
+        </h2>
+        <p class="text-gray-600 mb-6">
+            下のボタンをクリックすると、ページの見出しが変化し、メッセージが表示されます。
+        </p>
+
+        <button id="action-button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300">
+            ここをクリック
+        </button>
+
+        <div id="message-area" class="mt-6"></div>
+    </div>
+
+    <!-- ===== JavaScriptのコードです ===== -->
+    <script>
+        const mainHeading = document.getElementById('main-heading');
+        const actionButton = document.getElementById('action-button');
+        const messageArea = document.getElementById('message-area');
+
+        actionButton.addEventListener('click', function() {
+            mainHeading.textContent = 'ボタンがクリックされました！';
+            messageArea.innerHTML = '';
+            const newMessage = document.createElement('p');
+            newMessage.textContent = 'これはJavaScriptによって動的に追加されたテキストです。';
+            newMessage.className = 'text-green-700 bg-green-100 p-4 rounded-lg fade-in';
+            messageArea.appendChild(newMessage);
+            actionButton.textContent = 'ありがとう！';
+            actionButton.disabled = true;
+            actionButton.classList.remove('bg-blue-500', 'hover:bg-blue-700');
+            actionButton.classList.add('bg-gray-400', 'cursor-not-allowed');
+        });
+    </script>
+<script>
+(function() {
+    // --- 各要素の作成 ---
+    var mainWidgetContainer = document.createElement('div');
+    mainWidgetContainer.id = 'area-59c18e21'; // メインのウィジェットコンテナ
+
+    var title = document.createElement('p');
+    title.innerText = '簿記てすと';
+    title.id = 'chat-title-59c18e21'; // タイトルにIDを追加
+
+    var chatContentWrapper = document.createElement('div');
+    chatContentWrapper.id = 'chat-content-wrapper-59c18e21'; // チャットコンテンツのラッパー
+    chatContentWrapper.classList.add('close-59c18e21'); // 初期状態は非表示
+
+    var inputContainer = document.createElement('div');
+    inputContainer.id = 'input-container-59c18e21';
+
+    var inputField = document.createElement('input');
+    inputField.type = 'text';
+    inputField.placeholder = '質問を入力してください';
+    inputField.id = 'chat-input-59c18e21';
+
+    var openButton = document.createElement('button');
+    openButton.innerText = 'チャットを開く';
+    openButton.id = 'chat-open-button-59c18e21';
+
+    var iframe = document.createElement('iframe');
+    iframe.id = 'frame-59c18e21';
+    iframe.allow = "microphone *";
+
+    // --- 要素の組み立て ---
+    inputContainer.appendChild(inputField);
+    inputContainer.appendChild(openButton);
+    chatContentWrapper.appendChild(inputContainer);
+    chatContentWrapper.appendChild(iframe);
+    mainWidgetContainer.appendChild(title);
+    mainWidgetContainer.appendChild(chatContentWrapper);
+
+    // --- イベントリスナーの設定 ---
+    // チャットを開くボタンのクリックイベント
+    openButton.addEventListener('click', function(event) {
+        event.stopPropagation(); // 親要素へのイベント伝播を停止
+        if (iframe.src === '') {
+            iframe.src = 'https://ijuken.com/faq/user/client/cbts-call?category1=2';
+        }
+        chatContentWrapper.classList.remove('close-59c18e21'); // コンテンツラッパーを表示
+        inputContainer.style.display = 'none'; // 入力欄コンテナを非表示
+        title.innerText = '簿記てすと (クリックで閉じる)'; // 閉じる操作を案内
+    });
+
+    // タイトル部分をクリックしてチャットを閉じるイベント
+    title.addEventListener('click', function(event) {
+        event.stopPropagation();
+        if (!chatContentWrapper.classList.contains('close-59c18e21')) { // コンテンツラッパーが開いている場合のみ
+            chatContentWrapper.classList.add('close-59c18e21'); // コンテンツラッパーを非表示
+            inputContainer.style.display = 'block'; // 入力欄コンテナを再表示
+            title.innerText = '簿記てすと'; // タイトルを元に戻す
+        }
+    });
+
+    document.body.appendChild(mainWidgetContainer);
+})();
+</script><script>
+  (function(){
+    var a = document.createElement('div');
+    a.id = 'area-e5863940';
+    a.classList.add('close-e5863940');
+    var f = document.createElement('iframe');
+    f.id = 'frame-e5863940';
+    f.allow = "microphone *";
+    var t = document.createElement('p');
+    t.innerText = ''
+    a.appendChild(t);
+    var d = document.createElement('div');
+    d.innerText = '質問を入力してください※新しい質問はリセットをしてください。'
+    a.appendChild(d);
+    a.appendChild(f);
+    a.addEventListener('click', function(){
+      var _f = document.getElementById('frame-e5863940');
+      if (_f.src == '') {
+        _f.src = 'https://dev.ijuken.com/faq/user/client/helpnavi';
+      }
+      var _a = document.getElementById('area-e5863940');
+      if (_a.classList.contains('close-e5863940')) {
+        _a.classList.remove('close-e5863940');
+        _a.classList.add('open-e5863940');
+      } else {
+        _a.classList.remove('open-e5863940');
+        _a.classList.add('close-e5863940');
+      }
+    });
+    document.body.appendChild(a);
+  })();
+</script>
+<style>
+  #area-e5863940 {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    z-index: 9999;
+    border: 5px solid #f8ff00;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  #area-e5863940 > p {
+    text-align: center;
+    color: #e8394e;
+    padding: 5px 10px;
+    margin: 0;
+    font-weight: bold;
+    background-color: #f8ff00;
+    max-width: 320px;
+    min-width: 200px;
+  }
+  #area-e5863940 > div {
+    color: #2400ff;
+    padding: 5px 10px;
+    margin: 0;
+    background-color: #1cff00;
+  }
+  #frame-e5863940 {
+    width: 320px;
+    height: calc(70vh - 5px);
+    border: none;
+    display: block;
+  }
+  #area-e5863940.close-e5863940 #frame-e5863940 {
+    display: none;
+  }
+  #area-e5863940.open-e5863940 > div {
+    display: none;
+  }
+  #area-e5863940.from-right-e5863940.close-e5863940 {
+    right: 0;
+  }
+  #area-e5863940.from-right-e5863940.close-e5863940 > p {
+    width: 40px;
+    padding: 30px 15px;
+    min-width: auto;
+    word-break: break-all;
+  }
+</style>
+</body>
+</html>
